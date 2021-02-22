@@ -22,4 +22,6 @@ public interface TaskService {
 	
 	Task delete (Long id);
 
+	Page<Task> search(String name, Long sprintId, int pageNo);
+
 }

@@ -58,4 +58,9 @@ public class JpaTaskService implements TaskService{
 		return null;
 	}
 
+	@Override
+	public Page<Task> search(String name, Long sprintId, int pageNo) {
+		return taskRepository.search(name, sprintId, PageRequest.of(pageNo, 2));
+	}
+
 }

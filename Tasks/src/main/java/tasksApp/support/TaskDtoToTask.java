@@ -38,7 +38,7 @@ public class TaskDtoToTask implements Converter<TaskDTO, Task>{
 			task.setEmployee(taskDto.getEmployee());
 			
 			if (taskDto.getState() != null) {
-				task.setState(stateService.findOne(taskDto.getId()));
+				task.setState(stateService.findOne(taskDto.getState().getId()));
 			}
 			if (taskDto.getSprint() != null) {
 				task.setSprint(sprintService.findOne(taskDto.getSprint().getId()));
