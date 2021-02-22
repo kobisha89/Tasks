@@ -12,30 +12,28 @@ import tasksApp.enumeration.UserRole;
 
 @Entity
 public class User {
-	
 
-	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@Column(unique = true, nullable = false)
-    private String username;
-	
-	@Column( unique = true, nullable = false)
-    private String eMail;
-	
+	private String username;
+
+	@Column(unique = true, nullable = false)
+	private String eMail;
+
 	@Column
-    private String name;
-	
+	private String name;
+
 	@Column
-    private String lastname;
-	
+	private String lastname;
+
 	@Column(nullable = false)
-    private String password;
-	
+	private String password;
+
 	@Enumerated(EnumType.STRING)
-    private UserRole role;
+	private UserRole role;
 
 	public User() {
 		super();
@@ -138,6 +136,5 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", eMail=" + eMail + ", name=" + name + ", lastname="
 				+ lastname + ", password=" + password + ", role=" + role + "]";
 	}
-	
 
 }
