@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: Radulovic
+Build-Jdk: 11.0.9.1
+Implementation-Title: Tasks Maven Webapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: tasks
+Implementation-URL: http://www.example.com
+Created-By: Maven Integration for Eclipse
+
