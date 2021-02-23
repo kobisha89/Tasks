@@ -97,7 +97,7 @@ class EditTask extends React.Component {
                 <label htmlFor="tPoints">Points</label><br/>
                 <input id="tPoints" type="number" value={this.state.points} onChange={(e) => this.pointsChange(e)}/><br/>
 
-                <button className="button btn-primary" onClick={() => this.edit()}>Edit</button>
+                <button className="btn btn-primary" onClick={() => this.edit()}>Edit</button>
             </div>
         )
     }

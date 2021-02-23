@@ -152,7 +152,7 @@ class AddTask extends React.Component {
                     }
                 </select><br/>
 
-                <button className="button btn-primary" onClick={(event)=>{this.create(event);}}>Add</button>
+                <button className="btn btn-primary" onClick={(event)=>{this.create(event);}}>Add</button>
             </div>
         )
     }

@@ -1,25 +1,21 @@
 package tasksApp.dto;
 
 public class UserRegistrationDTO extends UserDTO{
-	
+
 	private String password;
-
-    private String repeatedPassword;
-
+	
+	private String passwordConfirm;
+	
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getRepeatedPassword() {
-		return repeatedPassword;
+	public String getPasswordConfirm() {
+		return passwordConfirm;
 	}
-
-	public void setRepeatedPassword(String repeatedPassword) {
-		this.repeatedPassword = repeatedPassword;
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
-
 }

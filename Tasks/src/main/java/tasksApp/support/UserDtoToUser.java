@@ -9,29 +9,23 @@ import tasksApp.model.User;
 import tasksApp.service.UserService;
 
 @Component
-public class UserDtoToUser implements Converter<UserDTO, User>{
-	
-	@Autowired
+public class UserDtoToUser implements Converter<UserDTO, User>{@Autowired
 	private UserService userService;
-
+	
 	@Override
-	public User convert(UserDTO userDTO) {
-		User user = null;
-		if (userDTO.getId() != null) {
-			user = userService.findOne(userDTO.getId()).get();
+	public User convert(UserDTO source) {
+		User target = null;
+		if(source.getId() != null) {
+			target = userService.one(source.getId()).get();
 		}
 		
-		if (user == null) {
-			user = new User();
+		if(target == null) { 
+			target = new User();
 		}
+				
+		target.setUsername(source.getUsername());
 		
-		user.setUsername(userDTO.getUsername());
-		user.setLastname(userDTO.getLastname());
-		user.setName(userDTO.getName());
-		user.seteMail(userDTO.geteMail());
-		
-		
-		return user;
+		return target;
 	}
 
 }

@@ -19,24 +19,23 @@ import tasksApp.service.UserService;
 
 @Service
 @Primary
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UserDetailsServiceImpl implements UserDetailsService{ 
 	
-	@Autowired
+	  @Autowired
 	  private UserService userService;
-	
+
 	  @Override
 	  @Transactional
 	  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	    User user = userService.findbyUsername(username).orElse(null);
+	    User user = userService.findbyKorisnickoIme(username).orElse(null);
 
 	    if (user == null) {
 	      throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
 	    } else {
 	        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
-	        // korisnik moze imati vise od jedne uloge te za svaku ulogu mogu biti definisana prava
 	        String role = "ROLE_" + user.getRole().toString();
-	        //String role = korisnik.getUloga().toString();
+	        
 	        grantedAuthorities.add(new SimpleGrantedAuthority(role));
 
 	        return new org.springframework.security.core.userdetails.User(
@@ -45,6 +44,5 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	                grantedAuthorities);
 	    }
 	  }
-
 
 }

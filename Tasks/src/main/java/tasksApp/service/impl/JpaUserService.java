@@ -12,78 +12,75 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import tasksApp.dto.UserPasswordChangeDto;
-import tasksApp.enumeration.UserRole;
+import tasksApp.enumeration.KorisnickaUloga;
 import tasksApp.model.User;
 import tasksApp.repository.UserRepository;
 import tasksApp.service.UserService;
 
 @Service
 public class JpaUserService implements UserService{
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
-	@Override
-	public Optional<User> findOne(Long id) {
-		return userRepository.findById(id);
-	}
+    @Override
+    public Optional<User> one(Long id) {
+        return userRepository.findById(id);
+    }
 
-	@Override
-	public List<User> findAll() {
-		return userRepository.findAll();
-	}
+    @Override
+    public List<User> all() {
+        return userRepository.findAll();
+    }
 
-	@Override
-	public Page<User> findAll(int pageNumber) {
-		return userRepository.findAll(PageRequest.of(pageNumber,10));
-	}
+    @Override
+    public Page<User> all(int pageNo) {
+        return userRepository.findAll(PageRequest.of(pageNo,2));
+    }
 
-	@Override
-	public User save(User user) {
-		user.setRole(UserRole.USER);
+    @Override
+    public User save(User user) {
+    	user.setRole(KorisnickaUloga.KORISNIK);
         return userRepository.save(user);
-	}
+    }
 
-	@Override
-	public void delete(Long id) {
-		userRepository.deleteById(id);
-		
-	}
+    @Override
+    public void delete(Long id) {
+    	userRepository.deleteById(id);
+    }
 
-	@Override
-	public Optional<User> findbyUsername(String username) {
-		return userRepository.findFirstByUsername(username);
-	}
+    @Override
+    public Optional<User> findbyKorisnickoIme(String username) {
+        return userRepository.findFirstByUsername(username);
+    }
 
-	@Override
-	public boolean changePassword(Long id, UserPasswordChangeDto userPasswordChangeDto) {
-		  Optional<User> rezultat = userRepository.findById(id);
+    @Override
+    public boolean changePassword(Long id, UserPasswordChangeDto userPasswordChangeDto) {
+        Optional<User> rezultat = userRepository.findById(id);
 
-	        if(!rezultat.isPresent()) {
-	            throw new EntityNotFoundException();
-	        }
+        if(!rezultat.isPresent()) {
+            throw new EntityNotFoundException();
+        }
 
-	        User user = rezultat.get();
+        User user = rezultat.get();
 
-	        if(!user.getUsername().equals(userPasswordChangeDto.getUserName())
-	                || !user.getPassword().equals(userPasswordChangeDto.getPassword())){
-	            return false;
-	        }
+        if(!user.getUsername().equals(userPasswordChangeDto.getUsername())
+                || !user.getPassword().equals(userPasswordChangeDto.getPassword())){
+            return false;
+        }
 
-	        String password = userPasswordChangeDto.getPassword();
-	        if (!userPasswordChangeDto.getPassword().equals("")) {
-	            password = passwordEncoder.encode(userPasswordChangeDto.getPassword());
-	        }
+        String password = userPasswordChangeDto.getPassword();
+        if (!userPasswordChangeDto.getPassword().equals("")) {
+            password = passwordEncoder.encode(userPasswordChangeDto.getPassword());
+        }
 
-	        user.setPassword(password);;
+        user.setPassword(password);
 
-	        userRepository.save(user);
+        userRepository.save(user);
 
-	        return true;
-	    }
-
-
+        return true;
+    }
 }

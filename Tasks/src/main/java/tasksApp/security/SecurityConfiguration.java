@@ -3,6 +3,7 @@ package tasksApp.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -62,25 +63,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.csrf().disable()
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and().authorizeRequests()
-				.anyRequest().permitAll();
+				.and().authorizeRequests().anyRequest().permitAll();
 		
-//				.and().authorizeRequests()    !!!!
-		
-//				.antMatchers("/**")
-//				.permitAll()
-//				.anyRequest().authenticated();
-			/*	.and()
-				.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/api/korisnici/auth")
-					.permitAll()
-					
-				 .antMatchers(HttpMethod.GET, "/api/filmovi")
-					 .permitAll()            !!!!
-					 
-				.anyRequest().authenticated();*/
-
-		// Custom JWT based authentication
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),
 				UsernamePasswordAuthenticationFilter.class);
 	}

@@ -1,6 +1,6 @@
 import React from "react";
 import {Form, Button, Row, Col} from 'react-bootstrap'
-import {login} from "../../services/auth"
+import {login} from "../../services/auth";
 
 class Login extends React.Component {
   constructor() {
@@ -18,6 +18,7 @@ class Login extends React.Component {
     let change = {};
     change[name] = value;
     this.setState(change);
+    console.log(change)
   }
 
   render() {

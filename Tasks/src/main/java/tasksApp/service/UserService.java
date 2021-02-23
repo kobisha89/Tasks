@@ -10,17 +10,17 @@ import tasksApp.model.User;
 
 public interface UserService {
 
-	Optional<User> findOne(Long id);
+    Optional<User> one(Long id);
 
-	List<User> findAll();
+    List<User> all();
 
-	Page<User> findAll(int brojStranice);
+    Page<User> all(int pageNo);
 
-	User save(User user);
+    User save(User user);
 
-	void delete(Long id);
+    void delete(Long id);
 
-	Optional<User> findbyUsername(String username);
+    Optional<User> findbyKorisnickoIme(String username);
 
 	boolean changePassword(Long id, UserPasswordChangeDto userPasswordChangeDto);
 
