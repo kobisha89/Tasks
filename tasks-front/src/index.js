@@ -7,6 +7,8 @@ import Home from './components/Home';
 import {logout} from './services/auth';
 import Login from './components/login/Login';
 import Task from './components/tasks/Task';
+import AddTask from './components/tasks/AddTask';
+import EditTask from './components/tasks/EditTask';
 
 class App extends React.Component{
     render() {
@@ -30,6 +32,8 @@ class App extends React.Component{
                     <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/tasks" component={Task} />
+                            <Route exact path="/tasks/add" component={AddTask} />
+                            <Route exact path="/tasks/edit/:id" component={EditTask} />
                             <Route exact path="/login" component={Login}/>
                     </Switch>
                     </Container>

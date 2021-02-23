@@ -38,6 +38,21 @@ class Task extends React.Component {
             });
     }
 
+    changeState(taskId) {
+        Axios.get('/states/' + taskId)
+        .then(res => {
+            // handle success
+            console.log(res.data)
+            alert('Tasks stete successfully changed!');
+            window.location.reload()
+        })
+        .catch(error => {
+            // handle error
+            console.log(error);
+            alert('Tasks stete is not changed');
+         });
+    }
+
     delete(taskId) {
         Axios.delete('/tasks/' + taskId)
         .then(res => {
@@ -60,7 +75,9 @@ class Task extends React.Component {
                     <td>{task.points}</td>
                     <td>{task.sprint.name}</td>
                     <td>{task.state.name}</td>
-                    <td><button className="button btn-primary" onClick={() => this.delete(task.id)}>Delete</button></td>
+                    <td><button className="btn btn-primary" onClick={() => this.changeState(task.id)}>Change state</button></td>
+                    <td><button className="btn btn-success" onClick={() => this.edit(task.id)}>Edit</button></td>
+                    <td><button className="btn btn-danger" onClick={() => this.delete(task.id)}>Delete</button></td>
                 </tr>
             )
         })
@@ -114,10 +131,19 @@ class Task extends React.Component {
         this.getTasks();
     }
 
+    addTask() {
+        this.props.history.push('/tasks/add')
+    }
+    
+    edit(taskId) {
+        this.props.history.push('/tasks/edit/'+ taskId);
+    }
+
     render () {
         return (
             <div>
                 <h1>Tasks</h1>
+                <button className="btn btn-primary" type="submit" onClick = {() => this.addTask()}>Add task</button><br/>
                 <form>
                 <label htmlFor="tName">Task name</label><br/>
                 <input id="tName" name="name" type="text" onChange={(e) => this.searchValueChange(e)}/><br/>
@@ -135,7 +161,7 @@ class Task extends React.Component {
                 }
                 </select><br/>
                 
-                <button className="button btn-primary" onClick={()=>{this.search();}}>Search</button>
+                <button className="btn btn-primary" onClick={()=>{this.search();}}>Search</button>
                 </form>
 
                 <table className="table table-dark">
@@ -156,8 +182,8 @@ class Task extends React.Component {
                 </table>
 
                 <div>
-                    <button disabled={this.state.pageNo==0} onClick={() =>this.getTasks(this.state.pageNo = this.state.pageNo - 1)}>Previous</button>
-                    <button disabled={this.state.pageNo==this.state.totalPages-1} onClick={() =>this.getTasks(this.state.pageNo = this.state.pageNo + 1)}>Next</button>
+                    <button disabled={this.state.pageNo==0} className="btn btn-primary" onClick={() =>this.getTasks(this.state.pageNo = this.state.pageNo - 1)}>Previous</button>
+                    <button disabled={this.state.pageNo==this.state.totalPages-1} className="btn btn-primary" onClick={() =>this.getTasks(this.state.pageNo = this.state.pageNo + 1)}>Next</button>
                 </div>
             </div>
         )
