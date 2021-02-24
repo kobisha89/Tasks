@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import tasksApp.enumeration.KorisnickaUloga;
+import tasksApp.enumeration.UserRole;
 
 @Entity
 public class User {
@@ -24,7 +24,7 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private KorisnickaUloga role;
+    private UserRole role;
 
     public User(){
 
@@ -60,12 +60,15 @@ public class User {
 	}
 
 
-	public KorisnickaUloga getRole() {
+	public UserRole getRole() {
 		return role;
 	}
 
 
-	public void setRole(KorisnickaUloga role) {
+	public void setRole(UserRole role) {
 		this.role = role;
 	}
+
+
+
 }

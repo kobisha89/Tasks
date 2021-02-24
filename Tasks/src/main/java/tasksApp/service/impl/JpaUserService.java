@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import tasksApp.dto.UserPasswordChangeDto;
-import tasksApp.enumeration.KorisnickaUloga;
+import tasksApp.enumeration.UserRole;
 import tasksApp.model.User;
 import tasksApp.repository.UserRepository;
 import tasksApp.service.UserService;
@@ -39,12 +39,6 @@ public class JpaUserService implements UserService{
     @Override
     public Page<User> all(int pageNo) {
         return userRepository.findAll(PageRequest.of(pageNo,2));
-    }
-
-    @Override
-    public User save(User user) {
-    	user.setRole(KorisnickaUloga.KORISNIK);
-        return userRepository.save(user);
     }
 
     @Override
@@ -83,4 +77,10 @@ public class JpaUserService implements UserService{
 
         return true;
     }
+
+	@Override
+	public User save(User user) {
+    	user.setRole(UserRole.USER);
+    	return userRepository.save(user);
+	}
 }
