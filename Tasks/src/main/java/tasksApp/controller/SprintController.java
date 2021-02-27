@@ -25,6 +25,7 @@ public class SprintController {
 	@Autowired
 	private SprintToSprintDto toSprintDto;
 	
+	//@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	@GetMapping
 	public ResponseEntity<List<SprintDTO>> getAll () {
 		

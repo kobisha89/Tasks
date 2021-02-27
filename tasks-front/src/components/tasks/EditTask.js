@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from '../../apis/Axios';
+import {Button, Form} from 'react-bootstrap'
 
 class EditTask extends React.Component {
 
@@ -90,14 +91,15 @@ class EditTask extends React.Component {
         return (
             <div>
                 <h1>Edit task</h1>
-                <label htmlFor="tName">Name</label><br/>
-                <input id="tName" type="text" value={this.state.name} onChange={(e) => this.nameChange(e)}/><br/>
-                <label htmlFor="tEmployee">Employee</label><br/>
-                <input id="tEmployee" type="text" value={this.state.employee} onChange={(e) => this.employeeChange(e)}/><br/>
-                <label htmlFor="tPoints">Points</label><br/>
-                <input id="tPoints" type="number" value={this.state.points} onChange={(e) => this.pointsChange(e)}/><br/>
-
-                <button className="btn btn-primary" onClick={() => this.edit()}>Edit</button>
+                <Form>
+                    <Form.Label htmlFor="tName">Name</Form.Label><br/>
+                    <Form.Control id="tName" type="text" value={this.state.name} onChange={(e) => this.nameChange(e)}/><br/>
+                    <Form.Label htmlFor="tEmployee">Employee</Form.Label><br/>
+                    <Form.Control id="tEmployee" type="text" value={this.state.employee} onChange={(e) => this.employeeChange(e)}/><br/>
+                    <Form.Label htmlFor="tPoints">Points</Form.Label><br/>
+                    <Form.Control id="tPoints" type="number" value={this.state.points} onChange={(e) => this.pointsChange(e)}/><br/>
+                    <Button className="btn btn-primary" onClick={() => this.edit()}>Edit</Button>
+                </Form>
             </div>
         )
     }

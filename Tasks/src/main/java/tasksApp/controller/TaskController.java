@@ -39,6 +39,7 @@ public class TaskController {
 	@Autowired
 	private TaskDtoToTask toTask;
 	
+	//@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	@GetMapping
 	public ResponseEntity<List<TaskDTO>> getAll(@RequestParam(required=false) String name,
 			@RequestParam(required=false) Long sprintId,
@@ -53,7 +54,7 @@ public class TaskController {
 	
 	}
 	
-	
+	//@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	@GetMapping("/{id}")
 	public ResponseEntity <TaskDTO> get(@PathVariable Long id) {
 		Task task = taskService.findOne(id);
@@ -65,6 +66,7 @@ public class TaskController {
         }
 	}
 	
+	//@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <TaskDTO> create (@Valid @RequestBody TaskDTO taskDTO) {
 		Task task = toTask.convert(taskDTO);
@@ -73,6 +75,7 @@ public class TaskController {
 		return new ResponseEntity<>(toTaskDto.convert(savedTask), HttpStatus.CREATED);
 	}
 	
+	//@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TaskDTO> update(@PathVariable Long id, @Valid @RequestBody TaskDTO taskDTO){
 
@@ -86,6 +89,7 @@ public class TaskController {
         return new ResponseEntity<>(toTaskDto.convert(savedTask),HttpStatus.OK);
     }
 	
+	//@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
 		Task deletedTask = taskService.delete(id);

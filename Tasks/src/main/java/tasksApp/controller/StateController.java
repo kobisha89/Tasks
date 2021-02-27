@@ -36,6 +36,7 @@ public class StateController {
 	@Autowired
 	private TaskToTaskDto toTaskDto;
 	
+	//@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	@GetMapping
 	public ResponseEntity<List<StateDTO>> getAll () {
 		
@@ -44,6 +45,7 @@ public class StateController {
 		return new ResponseEntity<>(toStateDto.convert(states), HttpStatus.OK);
 	}
 	
+	//@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/{id}")
 	public ResponseEntity <TaskDTO> changeState(@PathVariable Long id) {
 		

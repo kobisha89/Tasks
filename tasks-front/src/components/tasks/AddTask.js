@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from '../../apis/Axios';
+import {Button, Form} from 'react-bootstrap'
 
 class AddTask extends React.Component {
 
@@ -119,40 +120,41 @@ class AddTask extends React.Component {
         return (
             <div>
                 <h1>Add task</h1>
-                <label htmlFor="tName">Name</label><br/>
-                <input id="tName" type="text" name="name" onChange={(e) => this.onInputChange(e)}/><br/>
-                <label htmlFor="tEmployee">Employee</label><br/>
-                <input id="tEmployee" type="text" name="employee" onChange={(e) => this.onInputChange(e)}/><br/>
-                <label htmlFor="tPoints">Points</label><br/>
-                <input id="tPoints" type="number" name="points" onChange={(e) => this.onInputChange(e)}/><br/>
-                <label htmlFor="tSprint">Sprint</label><br/>
-                <select id="tSprint" onChange={event => this.sprintSelectionChange(event)}>
-                    <option></option>
-                    {
-                        this.state.sprints.map((sprint) => {
-                            return (
-                                <option key={sprint.id} value={sprint.id}>
-                                    {sprint.name}
-                                </option>
-                            )
-                        })
-                    }
-                </select><br/>
-                <label htmlFor="tState">State</label><br/>
-                <select id="tState" onChange={event => this.stateSelectionChange(event)}>
-                    <option></option>
-                    {
-                        this.state.states.map((state) => {
-                            return (
-                                <option key={state.id} value={state.id}>
-                                    {state.name}
-                                </option>
-                            )
-                        })
-                    }
-                </select><br/>
-
-                <button className="btn btn-primary" onClick={(event)=>{this.create(event);}}>Add</button>
+                <Form>
+                    <Form.Label htmlFor="tName">Name</Form.Label><br/>
+                    <Form.Control id="tName" type="text" name="name" onChange={(e) => this.onInputChange(e)}/><br/>
+                    <Form.Label htmlFor="tEmployee">Employee</Form.Label><br/>
+                    <Form.Control id="tEmployee" type="text" name="employee" onChange={(e) => this.onInputChange(e)}/><br/>
+                    <Form.Label htmlFor="tPoints">Points</Form.Label><br/>
+                    <Form.Control id="tPoints" type="number" name="points" onChange={(e) => this.onInputChange(e)}/><br/>
+                    <Form.Label htmlFor="tSprint">Sprint</Form.Label><br/>
+                    <Form.Control as="select" id="tSprint" onChange={event => this.sprintSelectionChange(event)}>
+                        <option></option>
+                        {
+                            this.state.sprints.map((sprint) => {
+                                return (
+                                    <option key={sprint.id} value={sprint.id}>
+                                        {sprint.name}
+                                    </option>
+                                )
+                            })
+                        }
+                    </Form.Control><br/>
+                    <Form.Label htmlFor="tState">State</Form.Label><br/>
+                    <Form.Control as="select" id="tState" onChange={event => this.stateSelectionChange(event)}>
+                        <option></option>
+                        {
+                            this.state.states.map((state) => {
+                                return (
+                                    <option key={state.id} value={state.id}>
+                                        {state.name}
+                                    </option>
+                                )
+                            })
+                        }
+                    </Form.Control><br/>
+                    <button className="btn btn-primary" onClick={(event)=>{this.create(event);}}>Add</button>
+                </Form>
             </div>
         )
     }

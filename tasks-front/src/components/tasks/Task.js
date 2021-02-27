@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from '../../apis/Axios';
+import {Table, Button, Form} from 'react-bootstrap'
 
 class Task extends React.Component {
 
@@ -143,28 +144,28 @@ class Task extends React.Component {
         return (
             <div>
                 <h1>Tasks</h1>
-                <button className="btn btn-primary" type="submit" onClick = {() => this.addTask()}>Add task</button><br/>
-                <form>
-                <label htmlFor="tName">Task name</label><br/>
-                <input id="tName" name="name" type="text" onChange={(e) => this.searchValueChange(e)}/><br/>
-                <label htmlFor="tSprintId">Sprint</label><br/>
-                <select id="tSprintId" name="sprintId" onChange={(e) => this.searchValueChange(e)}>
-                <option></option>
-                {
-                    this.state.sprints.map((sprint) => {
-                        return (
-                            <option key={sprint.id} value={sprint.id}>
-                                {sprint.name}
-                            </option>
-                        )
-                    })
-                }
-                </select><br/>
-                
-                <button className="btn btn-primary" onClick={()=>{this.search();}}>Search</button>
-                </form>
+                <Button className="btn btn-primary" type="submit" onClick = {() => this.addTask()}>Add task</Button><br/>
+                <Form>
+                    <Form.Label htmlFor="tName">Task name</Form.Label><br/>
+                    <Form.Control id="tName" name="name" type="text" onChange={(e) => this.searchValueChange(e)}/><br/>
+                    <Form.Label htmlFor="tSprintId">Sprint</Form.Label><br/>
+                    <Form.Control as="select" id="tSprintId" name="sprintId" onChange={(e) => this.searchValueChange(e)}>
+                    <option></option>
+                    {
+                        this.state.sprints.map((sprint) => {
+                            return (
+                                <option key={sprint.id} value={sprint.id}>
+                                    {sprint.name}
+                                </option>
+                            )
+                        })
+                    }
+                    </Form.Control><br/>
+                    
+                    <Button style={{ marginTop: "1px" }} className="btn btn-primary" onClick={()=>{this.search();}}>Search</Button>
+                </Form>
 
-                <table className="table table-dark">
+                <Table style={{marginTop:30}} className="table table-dark">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -179,7 +180,7 @@ class Task extends React.Component {
                 <tbody>
                     {this.renderTasks()}
                 </tbody>
-                </table>
+                </Table>
 
                 <div>
                     <button disabled={this.state.pageNo==0} className="btn btn-primary" onClick={() =>this.getTasks(this.state.pageNo = this.state.pageNo - 1)}>Previous</button>

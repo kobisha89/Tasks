@@ -64,6 +64,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and().authorizeRequests().anyRequest().permitAll();
+//				.antMatchers(HttpMethod.GET, "/api/tasks")
+//				.permitAll()
+//				.antMatchers(HttpMethod.GET, "/api/states")
+//				.permitAll()
+//				.antMatchers(HttpMethod.GET, "/api/sprints")
+//				.permitAll()
+//				.antMatchers(HttpMethod.POST, "/api/users/auth")
+//				.permitAll()
 		
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),
 				UsernamePasswordAuthenticationFilter.class);
